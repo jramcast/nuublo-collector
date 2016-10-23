@@ -1,0 +1,24 @@
+{
+  "name": "nuublo2",
+  "version": "0.0.0",
+  "description": "Data collector for Weather insights based on Twitter",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^2.2.10",
+    "request": "^2.75.0",
+    "twitter": "^1.4.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "weather",
+    "twitter"
+  ],
+  "author": "jaime.ram@gmail.com",
+  "license": "ISC"
+}
