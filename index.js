@@ -7,7 +7,8 @@ const options = {
                 'radar nieve,radar nevando,radar granizo,radar rayos,radar chubascos,radar aemet,sinobas,ecazatormentas,la que esta cayendo nieve,' +
                 'la que esta cayendo lluvia,la que esta cayendo granizo,la que esta cayendo tormenta,la que esta cayendo rayos,' +
                 'nevando copazos,nieve cuajando,Meteodemallorca,@NWSSPC,metoffice,manera de llover,manera de nevar,@eltiempoes,' +
-                'MeteoAlbaceteDR,cumulonimbus tormenta,@SpainStormPred,@spainsevere,banda de precipitacion,frente precipitacion',
+                'MeteoAlbaceteDR,cumulonimbus tormenta,@SpainStormPred,@spainsevere,banda de precipitacion,frente precipitacion,' +
+                'lloviendo, nevando, granizando, tormenta relampagos',
         follow: '89707859,1857150498,310806928,1060403089,1095547530,760166790,767056579745185793,767043893661724672,2544227706,' + 
                 '424217382,4038086236,3837113362,2190647784,1588390848,2939588943,1696460815,1190035932,115183451,590060558,1337011070,' +
                 '16117029,427643966,58203491,973903266,567089833,229066643,767056579745185793,87376791,248149823,2238882655,' +
