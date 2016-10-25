@@ -26,8 +26,6 @@ function startCollector(db, options) {
     options.places.forEach(scheduleRequest);
 
     function scheduleRequest(place) {
-        // make first call
-        getCurrentConditions(place);
         // then schedule the rest
         setInterval(
             () => getCurrentConditions(place), 
