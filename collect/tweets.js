@@ -13,6 +13,8 @@ const client = new Twitter({
   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
+const reconnectAfterMinutes = 1;
+let reconnectTimeout;
 
 
 module.exports = options => 
@@ -24,16 +26,25 @@ module.exports = options =>
 function startCollector(db, options) {
     logger.info('Opening stream for tweets...');
     const stream = client.stream('statuses/filter', options);
+    // If we do not receive anything after opening the stream,
+    // we would try to reconnect
+    reconnectTimeout = setTimeoutForReconnection();
+
     stream.on('data', tweet => {
         if (tweet && tweet.text) {
+            // connection is alive, so we do not need to reconnect
+            clearTimeout(reconnectTimeout);
             storeTweet(tweet);
+            reconnectTimeout = setTimeoutForReconnection()
         }
     });
+
     stream.on('error', error => {
         logger.error(error);
         cleanStream(stream);
         reconnectAfter(60);
     });
+
     stream.on('end', response => {
         logger.info(`Stream ended. Status: ${response.statusCode} ${response.statusMessage}`);
         cleanStream(stream);
@@ -59,6 +70,16 @@ function startCollector(db, options) {
             seconds * 1000
         );
         logger.info(`Reconnecting after ${seconds} seconds...`);
+    }
+
+    function setTimeoutForReconnection() {
+        return setTimeout(
+            () => {
+                logger.warn('Nothing received recently, so we reconnect ');
+                reconnectAfter(0); 
+            }, 
+            1000 * 60 * reconnectAfterMinutes
+        );
     }
 }
 
